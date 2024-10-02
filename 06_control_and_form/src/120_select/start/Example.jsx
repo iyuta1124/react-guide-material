@@ -1,10 +1,20 @@
+import { useState } from "react";
+
 const Example = () => {
+  const temp = ["Apple", "Banana", "Cherry"];
+  const [val, setVal] = useState("Apple");
+  const changeHandler = (e) => {
+    setVal(e.target.value);
+  };
   return (
-    <p style={{ textAlign: "center" }}>
-      startフォルダの内容が表示されます。
-      <br />
-      練習用に使ってください！
-    </p>
+    <>
+      <select onChange={changeHandler}>
+        {temp.map((t) => (
+          <option key={t}>{t}</option>
+        ))}
+      </select>
+      <div>{val}</div>
+    </>
   );
 };
 

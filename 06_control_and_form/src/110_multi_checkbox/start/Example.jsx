@@ -12,35 +12,19 @@ const Example = () => {
 
   const handleChange = (e) => {
     const newFruits = fruits.map((fruit) => {
-      const newFruit = { ...fruit };
-      if (newFruit.label === e.target.value) {
-        newFruit.checked = !fruit.checked;
+      if (fruit.label === e.target.value) {
+        fruit.checked = !fruit.checked;
       }
-
-      return newFruit;
+      return fruit;
     });
-
     setFruits(newFruits);
-    // forEachバージョン
-    // let sumVal = 0;
-    // newFruits.forEach(fruit => {
-    //   if(fruit.checked) {
-    //     sumVal = sumVal + fruit.value;
-    //   }
-    // });
 
-    // filter + forEachバージョン
-    // let sumVal = 0;
-    // newFruits
-    //   .filter((fruit) => fruit.checked)
-    //   .forEach((fruit) => (sumVal = sumVal + fruit.value));
-
-    // filter + reduceバージョン
-    let sumVal = newFruits
+    const sum = newFruits
       .filter((fruit) => fruit.checked)
-      .reduce((sumVal, fruit) => sumVal + fruit.value, 0);
-    setSum(sumVal);
+      .reduce((cur, acc) => cur + acc.value, 0);
+    setSum(sum);
   };
+
   return (
     <div>
       {fruits.map((fruit) => {
